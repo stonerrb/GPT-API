@@ -46,6 +46,8 @@ router.put('/update-price/:itemId', async (req, res) => {  // update the price o
         const itemId = req.params.itemId;
         const goldItem = await GoldItem.findById(itemId);
 
+        if(!goldItem) return res.status(404).json({ error: 'Item not found' });
+
         const response = await axios.get('http://localhost:3000/gold-price'); 
         const currentGoldPrice = response.data.gold_price; 
 
@@ -62,7 +64,7 @@ router.put('/update-price/:itemId', async (req, res) => {  // update the price o
     }
 });
 
-router.get('/gold-prices', async (req, res) => {  //get current and the best price 
+router.get('/gold-prices', async (req, res) => {  //get current and the best price -- on
     try {
       const itemId = req.query.itemId;
       const timeRange = parseInt(req.query.timeRange) || 30;

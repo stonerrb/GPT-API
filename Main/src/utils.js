@@ -29,7 +29,7 @@ exports.goldPriceGenerate = () => {  // assuming gold price ranges from 100 to 1
     return randomPrice;
 };
 
-// script -- unchecked
+// script -- experimental
 exports.updateGoldPrice = async () => {
     try{
         const response = await axios.get('https://localhost:3000/gold-price');
